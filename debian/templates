@@ -1,0 +1,4 @@
+Template: maratona-firewall/bocaip
+Type: string
+Description: Please provide BOCA IP Address:
+ If you leave an empty IP, firewall will not be stated during next reboot.

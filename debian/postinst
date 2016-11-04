@@ -1,6 +1,17 @@
 #!/bin/bash
+set -e
+. /usr/share/debconf/confmodule
 
 if ! grep -q "habilita-firewall" /etc/rc.local; then
   sed -i '/^exit 0/i \
 bash \/usr\/sbin\/habilita-firewall' /etc/rc.local
 fi
+
+
+priority=medium
+
+db_input high maratona-firewall/bocaip || true
+db_go || true
+
+db_get maratona-firewall/bocaip || true
+config-ip-boca "$RET" -f
