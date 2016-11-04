@@ -13,18 +13,18 @@ if echo "$1 $2" | grep -q "\-f"; then
 fi
 
 IP="$1"
-if ! egrep -q "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" <<< "$IP"; then
-  printf "Digite o IP do servidor BOCA: "
-  read IP
-
-  if ! egrep -q "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" <<< "$IP"; then
-    printf "Digite o IP do servidor boca.\n"
-    exit 3
-  fi
-fi
-
 RESP=0
 if [[ "$FORCE" == "false" ]]; then
+  if ! egrep -q "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" <<< "$IP"; then
+    printf "Digite o IP do servidor BOCA: "
+    read IP
+
+    if ! egrep -q "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" <<< "$IP"; then
+      printf "Digite o IP do servidor boca.\n"
+      exit 3
+    fi
+  fi
+
   ping -c1 -W1 $IP &>/dev/null
   RESP=$?
 fi
