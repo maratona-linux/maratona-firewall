@@ -1,4 +1,4 @@
-#Maratona Firewall
+# Maratona Firewall
 
 Este repositório trata dos pacote maratona-firewall do Maratona Linux.
 
@@ -11,7 +11,7 @@ dos competidores da Maratona de Programação no Brasil.
 Este pacote isola o competidor da rede evitando que pacotes de rede entrem e
 saiam do maratona-linux, exceto pelo acesso ao servidor BOCA.
 
-#Instalação
+# Instalação
 
 Todos os pacotes estão disponíveis no PPA:
 https://launchpad.net/~brunoribas/+archive/ubuntu/ppa-maratona
