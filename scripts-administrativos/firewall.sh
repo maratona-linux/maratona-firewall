@@ -4,7 +4,7 @@ function saidaerro()
 {
   printf "Ops. IP do servidor boca não configurado.\n"
   printf "Informe o IP do servidor BOCA com o comando:\n"
-  printf "    sudo config-ip-boca\n"
+  printf "    sudo dpkg-reconfigure maratona-firewall\n"
   exit 1
 }
 
