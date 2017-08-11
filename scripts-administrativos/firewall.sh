@@ -54,8 +54,6 @@ iptables -A INPUT -p icmp --icmp-type destination-unreachable -m limit --limit 1
 iptables -A INPUT -p icmp --icmp-type time-exceeded -m limit --limit 1/s -j ACCEPT
 
 #BOCA vale tudo
-#so nao vale SSH
-iptables -A OUTPUT -p tcp -d $BOCAIP --dport 22 -j REJECT
 
 iptables -A INPUT  -p tcp -s $BOCAIP -j ACCEPT
 iptables -A OUTPUT -p tcp -d $BOCAIP -j ACCEPT
