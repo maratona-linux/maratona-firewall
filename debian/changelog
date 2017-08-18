@@ -1,3 +1,16 @@
+maratona-firewall (2017-1) xenial; urgency=medium
+
+  * Allows SSH to boca server
+  * Deprecate proxy scripts
+
+ -- Bruno Ribas <brunoribas@utfpr.edu.br>  Fri, 18 Aug 2018 00:26:35 -0200
+
+maratona-firewall (2016-1.5) xenial; urgency=medium
+
+  * Avoid adding empty IP at /etc/hosts
+
+ -- Bruno Ribas <brunoribas@utfpr.edu.br>  Fri, 04 Nov 2016 21:37:35 -0200
+
 maratona-firewall (2016-1.4) xenial; urgency=medium
 
   * Asks BOCA IP during instalation and reconfiguration
