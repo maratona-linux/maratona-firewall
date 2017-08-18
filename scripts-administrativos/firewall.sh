@@ -14,10 +14,6 @@ fi
 
 . /etc/bocaip
 
-if [[ -e /etc/proxyip ]]; then
-  . /etc/proxyip
-fi
-
 if [[ "x$BOCAIP" == "x" ]]; then
   saidaerro
 fi
@@ -59,14 +55,6 @@ iptables -A INPUT  -p tcp -s $BOCAIP -j ACCEPT
 iptables -A OUTPUT -p tcp -d $BOCAIP -j ACCEPT
 iptables -A INPUT  -p udp -s $BOCAIP -j ACCEPT
 iptables -A OUTPUT -p udp -d $BOCAIP -j ACCEPT
-
-if [[ "x$PROXYIP" != "x" ]]; then
-  iptables -A OUTPUT -p tcp -d $PROXYIP --dport 22 -j REJECT
-  iptables -A INPUT  -p tcp -s $PROXYIP -j ACCEPT
-  iptables -A OUTPUT -p tcp -d $PROXYIP -j ACCEPT
-  iptables -A INPUT  -p udp -s $PROXYIP -j ACCEPT
-  iptables -A OUTPUT -p udp -d $PROXYIP -j ACCEPT
-fi
 
 #DNS
 #iptables -A OUTPUT -p tcp --syn -m state --state NEW --dport 53 -j ACCEPT
