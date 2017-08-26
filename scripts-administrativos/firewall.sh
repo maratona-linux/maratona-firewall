@@ -38,6 +38,7 @@ iptables -P FORWARD DROP
 
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p ICMP -j ACCEPT
 
 iptables -P INPUT DROP
 iptables -P OUTPUT DROP
