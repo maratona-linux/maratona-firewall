@@ -36,7 +36,7 @@ if (( RESP == 0 )) || (( RESP == 1 )); then
     sed -i "/boca-competidor$/d" /etc/hosts
   fi
   if [[ "x$IP" != "x" ]]; then
-    printf "$IP\tbombonera.org boca boca-competidor\n" >> /etc/hosts
+    printf "$IP\tglobal.bombonera.org boca boca-competidor\n" >> /etc/hosts
   fi
   printf "IP Adicionado com sucesso\n"
   exit 0
