@@ -8,6 +8,8 @@ override_dh_auto_install:
 	chmod a+x debian/maratona-firewall/usr/sbin/habilita-firewall
 	cp scripts-administrativos/firewall-stop.sh debian/maratona-firewall/usr/sbin/desabilita-firewall
 	chmod a+x debian/maratona-firewall/usr/sbin/desabilita-firewall
+	cp scripts-administrativos/force-config-boca-boot.sh debian/maratona-firewall/usr/sbin/force-config-boca-boot
+	chmod a+x debian/maratona-firewall/usr/sbin/force-config-boca-boot
 
 
 %:
