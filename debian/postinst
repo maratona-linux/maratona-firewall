@@ -2,11 +2,9 @@
 set -e
 . /usr/share/debconf/confmodule
 
-if ! grep -q "habilita-firewall" /etc/rc.local; then
-  sed -i '/^exit 0/i \
-bash \/usr\/sbin\/habilita-firewall' /etc/rc.local
-fi
-
+# Habilitando o serviço do maratona-firewall para ser executado no boot do
+# sistema.
+systemctl enable maratona-firewall.service
 
 priority=medium
 

@@ -1,6 +1,10 @@
 #! /usr/bin/make -f
 
 override_dh_auto_install:
+	# Serviço para habilitar o firewall no reboot via systemd
+	mkdir -p debian/maratona-firewall/lib/systemd/system/
+	cp service/maratona-firewall.service debian/maratona-firewall/lib/systemd/system/
+
 	mkdir -p debian/maratona-firewall/usr/sbin/
 	cp scripts-administrativos/config-ip-boca.sh debian/maratona-firewall/usr/sbin/config-ip-boca
 	chmod a+x debian/maratona-firewall/usr/sbin/config-ip-boca
