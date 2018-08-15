@@ -6,7 +6,7 @@ Build-Depends: debhelper
 
 Package: maratona-firewall
 Architecture: all
-Depends: iptables
+Depends: ufw
 Description: Pacote que isola o competidor da rede.
  Este pacote evita que pacotes de rede entrem e saiam do maratona-linux,
  exceto pelo acesso ao servidor BOCA.
