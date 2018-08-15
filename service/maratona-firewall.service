@@ -1,15 +1,14 @@
-# "Daemon" do maratona-firewall para ser executado na
-# inicialização do sistema. Esse deamon faz com que o firewall da máquina sempre
+# Serviço do maratona-firewall para ser executado na
+# inicialização do sistema. Esse serviço faz com que o firewall da máquina sempre
 # inicie ativado, cabendo ao administrador da máquina desativa-lo.
 
 [Unit]
-Description=Maratona Firewall Daemon
-StartLimitBurst=5
+Description=Maratona Firewall Service
 
 [Service]
-Type=simple
+Type=oneshot
 User=root
-ExecStart=/usr/sbin/habilita-firewall
+ExecStart=/usr/sbin/ufw enable
 
 [Install]
 WantedBy=multi-user.target
