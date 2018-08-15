@@ -2,6 +2,15 @@
 set -e
 . /usr/share/debconf/confmodule
 
+# Funcao que estava no postinst
+# Fazer um template para imprimir tudo isso. -- TEMPLATE EM INGLES
+function saidaerro(){
+	printf "Ops. IP do servidor não configurado.\n"
+	printf "Informe o IP do servidor BOCA com o comando:\n"
+	printf "    sudo dpkg-reconfigure maratona-firewall\n"
+	exit 1
+}
+
 # Habilitando o serviço do maratona-firewall para ser executado no boot do
 # sistema.
 systemctl enable maratona-firewall.service
@@ -13,3 +22,52 @@ db_go || true
 
 db_get maratona-firewall/bocaip || true
 config-ip-boca "$RET" -f
+
+# Supondo que foi tudo bonito -- Fazer script de verificação segura.
+. /etc/bocaip
+
+# Copiando o que estava no script para ativar o firewall
+if [[ "x$BOCAIP" == "x" ]]; then
+	saidaerro
+fi
+
+# Reset no ufw - apaga tudo e volta para o padrao
+ufw -f reset
+
+# Para o arquivo nao ser lido para usuario de outros grupos
+chmod 640 /etc/ufw/before.rules
+
+# Por padrao, o firewall vem desligado
+ufw enable
+
+# Atribuindo o comportamento padrao
+# Deve servir tanto para os pacotes ipv4 como o ipv6 que nao se encaixam nas
+# regras descritas a seguir.
+ufw default deny incoming
+ufw default deny outgoing
+ufw default deny routed
+
+# Permitindo pacotes na interface loopback - Valido para IPv4 e v6.
+ufw allow in on lo
+ufw allow out on lo
+
+# Permitindo ssh e limitando para não ocorrer força bruta
+ufw allow ssh
+ufw limit ssh
+
+# Para o $BOCAIP vale tudo
+ufw allow from $BOCAIP
+
+# Rejeitando os pacotes udp e tcp para qualquer ip
+ufw reject out proto udp to any
+ufw reject out proto tcp to any
+
+# Para o firewall só fazer efeito no reboot.
+ufw disable
+
+sed -i -e 's/--icmp-type time-exceeded/--icmp-type time-exceeded -m limit --limit 1\/s/g' /etc/ufw/before.rules
+
+sed -i -e 's/--icmp-type destination-unreachable/--icmp-type destination-unreachable -m limit --limit 1\/s/g' /etc/ufw/before.rules
+
+sed -i -e 's/--icmp-type echo-request/--icmp-type echo-request -m limit --limit
+1\/s/g' /etc/ufw/before.rules
