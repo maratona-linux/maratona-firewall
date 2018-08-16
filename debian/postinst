@@ -69,5 +69,4 @@ sed -i -e 's/--icmp-type time-exceeded/--icmp-type time-exceeded -m limit --limi
 
 sed -i -e 's/--icmp-type destination-unreachable/--icmp-type destination-unreachable -m limit --limit 1\/s/g' /etc/ufw/before.rules
 
-sed -i -e 's/--icmp-type echo-request/--icmp-type echo-request -m limit --limit
-1\/s/g' /etc/ufw/before.rules
+sed -i -e 's/--icmp-type echo-request/--icmp-type echo-request -m limit --limit 1\/s/g' /etc/ufw/before.rules
