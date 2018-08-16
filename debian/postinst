@@ -43,12 +43,9 @@ ufw default deny routed
 ufw allow in on lo
 ufw allow out on lo
 
-# Permitindo ssh e limitando para não ocorrer força bruta
-ufw allow ssh
-ufw limit ssh
-
 # Para o $BOCAIP vale tudo
-ufw allow from $BOCAIP
+ufw allow out proto udp to $BOCAIP
+ufw allow out proto tcp to $BOCAIP
 
 # Rejeitando os pacotes udp e tcp para qualquer ip
 ufw reject out proto udp to any
