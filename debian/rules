@@ -6,11 +6,6 @@ override_dh_auto_install:
 	mkdir -p debian/maratona-firewall/lib/systemd/system/
 	cp service/maratona-firewall.service debian/maratona-firewall/lib/systemd/system/
 
-	# Adicionando arquivo before.rules para ser alterado no ufw.
-	mkdir -p debian/maratona-firewall/etc/ufw/
-	cp ufw-before-rules/before.rules debian/maratona-firewall/etc/ufw/
-	chmod 640 debian/maratona-firewall/etc/ufw/before.rules
-
 	mkdir -p debian/maratona-firewall/usr/sbin/
 	cp scripts-administrativos/config-ip-boca.sh debian/maratona-firewall/usr/sbin/config-ip-boca
 	chmod a+x debian/maratona-firewall/usr/sbin/config-ip-boca

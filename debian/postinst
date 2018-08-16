@@ -34,9 +34,6 @@ fi
 # Reset no ufw - apaga tudo e volta para o padrao
 ufw -f reset
 
-# Para o arquivo nao ser lido para usuario de outros grupos
-chmod 640 /etc/ufw/before.rules
-
 # Por padrao, o firewall vem desligado
 ufw enable
 
@@ -64,9 +61,3 @@ ufw reject out proto tcp to any
 
 # Para o firewall só fazer efeito no reboot.
 ufw disable
-
-sed -i -e 's/--icmp-type time-exceeded/--icmp-type time-exceeded -m limit --limit 1\/s/g' /etc/ufw/before.rules
-
-sed -i -e 's/--icmp-type destination-unreachable/--icmp-type destination-unreachable -m limit --limit 1\/s/g' /etc/ufw/before.rules
-
-sed -i -e 's/--icmp-type echo-request/--icmp-type echo-request -m limit --limit 1\/s/g' /etc/ufw/before.rules

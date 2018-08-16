@@ -1,6 +1,0 @@
-#!/bin/bash
-
-set -e
-
-dpkg-divert --divert /etc/ufw/before.rules.orig \
-			--rename /etc/ufw/before.rules

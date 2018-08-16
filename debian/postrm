@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Primeiro removendo o arquivo criado pelo o maratona-firewall
-# para substituir o before.rules do ufw.
-
-[ -f /etc/ufw/before.rules ] && \
-	rm /etc/ufw/before.rules
-
-# Desativando o desvio criado para poder ter um arquivo before.rules do
-# maratona-firewall
-dpkg-divert --rename --remove /etc/ufw/before.rules
-
 systemctl disable maratona-firewall.service
 
 [ -f /lib/systemd/system/maratona-firewall.service ] && \
