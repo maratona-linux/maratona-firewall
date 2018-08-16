@@ -1,6 +1,0 @@
-#!/bin/bash
-
-systemctl disable maratona-firewall.service
-
-[ -f /lib/systemd/system/maratona-firewall.service ] && \
-	rm /lib/systemd/system/maratona-firewall.service
