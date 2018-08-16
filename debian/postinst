@@ -2,15 +2,6 @@
 set -e
 . /usr/share/debconf/confmodule
 
-# Funcao que estava no postinst
-# Fazer um template para imprimir tudo isso. -- TEMPLATE EM INGLES
-function saidaerro(){
-	printf "Ops. IP do servidor não configurado.\n"
-	printf "Informe o IP do servidor BOCA com o comando:\n"
-	printf "    sudo dpkg-reconfigure maratona-firewall\n"
-	exit 1
-}
-
 # Habilitando o serviço do maratona-firewall para ser executado no boot do
 # sistema.
 systemctl enable maratona-firewall.service
@@ -26,13 +17,17 @@ config-ip-boca "$RET" -f
 # Supondo que foi tudo bonito -- Fazer script de verificação segura.
 . /etc/bocaip
 
-# Copiando o que estava no script para ativar o firewall
-if [[ "x$BOCAIP" == "x" ]]; then
-	saidaerro
-fi
-
 # Reset no ufw - apaga tudo e volta para o padrao
 ufw -f reset
+
+# With no configured BOCAIP we leave with no configuration but we may exit
+# safely
+if [[ "x$BOCAIP" == "x" ]]; then
+	printf "Ops. IP do servidor não configurado.\n"
+	printf "Informe o IP do servidor BOCA com o comando:\n"
+	printf "    sudo dpkg-reconfigure maratona-firewall\n"
+  exit 0
+fi
 
 # Por padrao, o firewall vem desligado
 ufw enable
