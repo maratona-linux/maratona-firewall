@@ -1,3 +1,19 @@
+maratona-firewall (20180815) bionic; urgency=medium
+
+  * Bruno Cesar Ribas (5):
+      d/postinst: Fix line wrap
+      Remove rules for ufw/before.rule
+      d/postinst: Safely exit when no BOCAIP is set
+      mv postrm prerm and dont remove package file
+      d/postinst: Fix firewall rules
+
+  * Wall Berg Morais (3):
+      Adicionado serviço para habilitar o firewall no boot do sistema.
+      Fix "daemon" type to oneshot and daemon to service.
+      Substituindo o iptables para o ufw (Uncomplicated Firewall).
+
+ -- Bruno Cesar Ribas <brunoribas@gmail.com>  Wed, 15 Aug 2018 23:39:15 -0300
+
 maratona-firewall (2017-3) xenial; urgency=medium
 
   * Add script to force configuration of boca IP during boot
