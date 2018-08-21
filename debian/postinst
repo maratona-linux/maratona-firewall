@@ -1,33 +1,12 @@
 #!/bin/bash
 set -e
-. /usr/share/debconf/confmodule
 
 # Habilitando o serviço do maratona-firewall para ser executado no boot do
 # sistema.
 systemctl enable maratona-firewall.service
 
-priority=medium
-
-db_input high maratona-firewall/bocaip || true
-db_go || true
-
-db_get maratona-firewall/bocaip || true
-config-ip-boca "$RET" -f
-
-# Supondo que foi tudo bonito -- Fazer script de verificação segura.
-. /etc/bocaip
-
 # Reset no ufw - apaga tudo e volta para o padrao
 ufw -f reset
-
-# With no configured BOCAIP we leave with no configuration but we may exit
-# safely
-if [[ "x$BOCAIP" == "x" ]]; then
-	printf "Ops. IP do servidor não configurado.\n"
-	printf "Informe o IP do servidor BOCA com o comando:\n"
-	printf "    sudo dpkg-reconfigure maratona-firewall\n"
-  exit 0
-fi
 
 # Por padrao, o firewall vem desligado
 ufw enable
@@ -44,8 +23,24 @@ ufw allow in on lo
 ufw allow out on lo
 
 # Para o $BOCAIP vale tudo
-ufw allow out proto udp to $BOCAIP
-ufw allow out proto tcp to $BOCAIP
+for LATAMHOST in /usr/share/maratona-firewall/hosts/*; do
+  if [[ ! -e "$LATAMHOST" ]]; then
+    continue;
+  fi
+  HOSTNAME="$(basename $LATAMHOST)"
+  echo "Enabling $HOSTNAME"
+  for IP in $(< $LATAMHOST); do
+    ufw allow out proto udp to $IP
+    ufw allow out proto tcp to $IP
+  done
+
+  # Only the first IP in the file will have an entry in /etc/hosts
+  IP="$(head -n1 $LATAMHOST)"
+  TMPFILE=$(mktemp)
+  egrep -v "($IP|$HOSTNAME)" /etc/hosts > $TMPFILE
+  printf "$IP\t$HOSTNAME\n" | cat $TMPFILE - > /etc/hosts
+  rm $TMPFILE
+done
 
 # Rejeitando os pacotes udp e tcp para qualquer ip
 ufw reject out proto udp to any
