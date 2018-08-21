@@ -10,6 +10,9 @@ override_dh_auto_install:
 	cp scripts-administrativos/config-ip-boca.sh debian/maratona-firewall/usr/sbin/config-ip-boca
 	chmod a+x debian/maratona-firewall/usr/sbin/config-ip-boca
 
+	mkdir -p debian/maratona-firewall/usr/share/maratona-firewall
+	cp -r hosts debian/maratona-firewall/usr/share/maratona-firewall
+
 
 %:
 	echo "$@"
