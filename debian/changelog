@@ -1,3 +1,9 @@
+maratona-firewall (20180820) bionic; urgency=medium
+
+  * Enable only ICPC-LATAM system servers
+
+ -- Bruno Cesar Ribas <brunoribas@gmail.com>  Mon, 20 Aug 2018 22:24:47 -0300
+
 maratona-firewall (20180815) bionic; urgency=medium
 
   * Bruno Cesar Ribas (5):
