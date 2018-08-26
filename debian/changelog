@@ -1,4 +1,4 @@
-maratona-firewall (20180820) bionic; urgency=medium
+maratona-firewall (20180826) bionic; urgency=medium
 
   * Enable only ICPC-LATAM system servers
 
