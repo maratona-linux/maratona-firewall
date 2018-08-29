@@ -1,3 +1,9 @@
+maratona-firewall (20180826.1) bionic; urgency=medium
+
+  * Creates /etc/bocaip file, which is necessary to boca-submission-tools
+
+ -- Bruno Cesar Ribas <brunoribas@gmail.com>  Sun, 26 Aug 2018 21:56:15 -0300
+
 maratona-firewall (20180826) bionic; urgency=medium
 
   * Enable only ICPC-LATAM system servers
