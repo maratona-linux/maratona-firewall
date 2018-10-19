@@ -6,10 +6,6 @@ override_dh_auto_install:
 	mkdir -p debian/maratona-firewall/lib/systemd/system/
 	cp service/maratona-firewall.service debian/maratona-firewall/lib/systemd/system/
 
-	mkdir -p debian/maratona-firewall/usr/sbin/
-	cp scripts-administrativos/config-ip-boca.sh debian/maratona-firewall/usr/sbin/config-ip-boca
-	chmod a+x debian/maratona-firewall/usr/sbin/config-ip-boca
-
 	mkdir -p debian/maratona-firewall/usr/share/maratona-firewall
 	cp -r hosts debian/maratona-firewall/usr/share/maratona-firewall
 	mkdir -p debian/maratona-firewall/etc/maratona-firewall/hosts
