@@ -23,7 +23,7 @@ ufw allow in on lo
 ufw allow out on lo
 
 # Para o $BOCAIP vale tudo
-for LATAMHOST in /usr/share/maratona-firewall/hosts/*; do
+for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hosts/*; do
   if [[ ! -e "$LATAMHOST" ]]; then
     continue;
   fi
@@ -49,7 +49,11 @@ ufw reject out proto tcp to any
 # Para o firewall só fazer efeito no reboot.
 ufw disable
 
-BOCA=$(< /usr/share/maratona-firewall/hosts/global.bombonera.org)
+BOCA=$(< /etc/maratona-firewall/hosts/boca.localdomain)
+
+if [[ -z "$BOCA" ]]; then
+  BOCA=$(< /usr/share/maratona-firewall/hosts/global.bombonera.org)
+fi
 echo "BOCAIP=$BOCA" > /etc/bocaip
 
 exit 0
