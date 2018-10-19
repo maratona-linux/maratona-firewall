@@ -1,3 +1,10 @@
+maratona-firewall (20181018) bionic; urgency=medium
+
+  * Add possibility to easily add more hosts
+  * Don't ship with deprecated utility config-ip-boca
+
+ -- Bruno Cesar Ribas <brunoribas@gmail.com>  Thu, 18 Oct 2018 22:41:35 -0300
+
 maratona-firewall (20180826.1) bionic; urgency=medium
 
   * Creates /etc/bocaip file, which is necessary to boca-submission-tools
