@@ -49,11 +49,11 @@ ufw reject out proto tcp to any
 # Para o firewall só fazer efeito no reboot.
 ufw disable
 
-BOCA=$(< /etc/maratona-firewall/hosts/boca.localdomain)
-
-if [[ -z "$BOCA" ]]; then
-  BOCA=$(< /usr/share/maratona-firewall/hosts/global.bombonera.org)
+BOCA=$(< /usr/share/maratona-firewall/hosts/global.bombonera.org)
+if [[ -e /etc/maratona-firewall/hosts/boca.localdomain ]]; then
+  BOCA=$(< /etc/maratona-firewall/hosts/boca.localdomain)
 fi
+
 echo "BOCAIP=$BOCA" > /etc/bocaip
 
 exit 0
