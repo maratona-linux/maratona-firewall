@@ -1,3 +1,9 @@
+maratona-firewall (20181018.1) bionic; urgency=medium
+
+  * Avoid error when boca.localdomain does not exist
+
+ -- Bruno Cesar Ribas <brunoribas@gmail.com>  Thu, 25 Oct 2018 17:42:34 -0300
+
 maratona-firewall (20181018) bionic; urgency=medium
 
   * Add possibility to easily add more hosts
