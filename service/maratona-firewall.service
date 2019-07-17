@@ -8,7 +8,8 @@ Description=Maratona Firewall Service
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/sbin/ufw enable
+ExecStart=/usr/share/maratona-firewall/maratona-firewall-configuration.sh
+ExecStop=ufw disable
 
 [Install]
 WantedBy=multi-user.target
