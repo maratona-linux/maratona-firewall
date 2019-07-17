@@ -1,17 +1,4 @@
 #! /usr/bin/make -f
 
-override_dh_auto_install:
-
-	# Serviço para habilitar o firewall no reboot via systemd
-	mkdir -p debian/maratona-firewall/lib/systemd/system/
-	cp service/maratona-firewall.service debian/maratona-firewall/lib/systemd/system/
-
-	mkdir -p debian/maratona-firewall/usr/share/maratona-firewall
-	cp -r hosts debian/maratona-firewall/usr/share/maratona-firewall
-	mkdir -p debian/maratona-firewall/etc/maratona-firewall/hosts
-	cp hosts/global.bombonera.org debian/maratona-firewall/etc/maratona-firewall/hosts/boca.localdomain
-
-
 %:
-	echo "$@"
 	dh $@
