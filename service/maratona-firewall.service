@@ -10,6 +10,7 @@ Type=oneshot
 User=root
 ExecStart=/usr/share/maratona-firewall/maratona-firewall-configuration.sh
 ExecStop=/usr/sbin/ufw disable
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
