@@ -6,6 +6,7 @@ all:
 install: install-systemd-hook
 	install -D hosts/nutellaboot.naquadah.com.br $(DESTDIR)$(prefix)/share/maratona-firewall/hosts/nutellaboot.naquadah.com.br
 	install -d $(DESTDIR)/etc/maratona-firewall/hosts
+	install -d $(DESTDIR)/etc/maratona-firewall/ufwrules
 	install -m 755 -D maratona-firewall-configuration.sh $(DESTDIR)$(prefix)/share/maratona-firewall/maratona-firewall-configuration.sh
 
 install-systemd-hook:

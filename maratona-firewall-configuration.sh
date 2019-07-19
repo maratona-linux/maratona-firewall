@@ -37,6 +37,13 @@ for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hos
   rm $TMPFILE
 done
 
+# configurações para UFW específicas
+
+for MLUFW in /etc/maratona-firewall/ufwrules/*; do
+  [[ ! -e "$MLUFW" ]] && continue
+  . $MLUFW
+done
+
 # Rejeitando os pacotes udp e tcp para qualquer ip
 ufw reject out proto udp to any
 ufw reject out proto tcp to any
