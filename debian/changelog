@@ -1,3 +1,20 @@
+maratona-firewall (20210517) focal; urgency=medium
+
+  [ Bruno Cesar Ribas ]
+  * d/postinst: Only enable systemd service
+  * d/rules: It is now more simple
+  * Makefile: added, this will now install the system
+  * hosts/nutellaboot.naquadah.com.br: Added
+  * maratona-firewall-configuration.sh: Added
+  * service/maratona-firewall.service: Updated
+  * s/maratona-firewall.service: ExecStop uses full path
+
+  [ Davi Antônio da Silva Santos ]
+  * Update .gitignore
+  * Bump compat from 7 to 12
+
+ -- Davi Antônio da Silva Santos <antoniossdavi@gmail.com>  Mon, 17 May 2021 22:47:32 -0300
+
 maratona-firewall (20181018.1) bionic; urgency=medium
 
   * Avoid error when boca.localdomain does not exist

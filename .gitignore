@@ -1,0 +1,6 @@
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/maratona-firewall.postrm.debhelper
+debian/maratona-firewall.substvars
+debian/maratona-firewall/
