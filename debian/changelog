@@ -1,3 +1,16 @@
+maratona-firewall (20210517.1) focal; urgency=medium
+
+  [ Bruno Cesar Ribas ]
+  * maratona-firewall.service: Added RemainAfterExit directive
+  * Add support for special UFW rules
+
+  [ Davi Antônio da Silva Santos ]
+  * Update maintainer, description and dependencies
+  * Enable prerm script to exit on failure
+  * Update machine-readable copyright file
+
+ -- Davi Antônio da Silva Santos <antoniossdavi@gmail.com>  Mon, 28 Jun 2021 20:52:19 -0300
+
 maratona-firewall (20210517) focal; urgency=medium
 
   [ Bruno Cesar Ribas ]

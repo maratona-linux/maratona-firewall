@@ -1,3 +1,4 @@
 #!/bin/bash
+set -e
 
 systemctl disable maratona-firewall.service
