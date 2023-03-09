@@ -3,8 +3,8 @@ Upstream-Name: maratona-firewall
 Source: <https://github.com/maratona-linux/maratona-firewall>
 
 Files: *
-Copyright: 2016-2021 Bruno César Ribas <bruno.ribas@unb.br>
-           2021 Davi Antônio da Silva Santos <antoniossdavi@gmail.com>
+Copyright: 2016-2022 Bruno César Ribas <bruno.ribas@unb.br>
+           2021-2023 Davi Antônio da Silva Santos <antoniossdavi@gmail.com>
            2018 Wall Berg Morais <wallbergmirandamorais@gmail.com>
 License: GPL-2.0+
 
