@@ -13,13 +13,13 @@ all:
 	:
 
 $(installed_ntp_servers):$(installed_hosts)/%:hosts/%
-	install -D $< $@
+	install -m 644 -D $< $@
 
 install-ntp-servers: $(installed_ntp_servers)
 
 install: install-ntp-servers install-systemd-hook
 	# main maratona-linux server
-	install -D hosts/nutellaboot.naquadah.com.br $(installed_hosts)/nutellaboot.naquadah.com.br
+	install -m 644 -D hosts/nutellaboot.naquadah.com.br $(installed_hosts)/nutellaboot.naquadah.com.br
 	# create empty directories
 	install -d $(DESTDIR)/etc/maratona-firewall/hosts
 	install -d $(DESTDIR)/etc/maratona-firewall/ufwrules
