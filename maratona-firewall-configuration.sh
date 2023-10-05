@@ -32,7 +32,8 @@ for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hos
   # Only the first IP in the file will have an entry in /etc/hosts
   IP="$(head -n1 "$LATAMHOST")"
   TMPFILE=$(mktemp)
-  egrep -v "($IP|$HOSTNAME)" /etc/hosts > "$TMPFILE"
+  grep --extended-regexp --invert-match \
+    "(${IP}|${HOSTNAME})" /etc/hosts > "$TMPFILE"
   printf "$IP\t$HOSTNAME\n" | cat "$TMPFILE" - > /etc/hosts
   rm "$TMPFILE"
 done
