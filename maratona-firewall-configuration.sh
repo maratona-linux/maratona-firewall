@@ -22,26 +22,26 @@ for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hos
   if [[ ! -e "$LATAMHOST" ]]; then
     continue;
   fi
-  HOSTNAME="$(basename $LATAMHOST)"
+  HOSTNAME="$(basename "$LATAMHOST")"
   echo "Enabling $HOSTNAME"
-  for IP in $(< $LATAMHOST); do
-    ufw allow out proto udp to $IP
-    ufw allow out proto tcp to $IP
+  for IP in $(< "$LATAMHOST"); do
+    ufw allow out proto udp to "$IP"
+    ufw allow out proto tcp to "$IP"
   done
 
   # Only the first IP in the file will have an entry in /etc/hosts
-  IP="$(head -n1 $LATAMHOST)"
+  IP="$(head -n1 "$LATAMHOST")"
   TMPFILE=$(mktemp)
-  egrep -v "($IP|$HOSTNAME)" /etc/hosts > $TMPFILE
-  printf "$IP\t$HOSTNAME\n" | cat $TMPFILE - > /etc/hosts
-  rm $TMPFILE
+  egrep -v "($IP|$HOSTNAME)" /etc/hosts > "$TMPFILE"
+  printf "$IP\t$HOSTNAME\n" | cat "$TMPFILE" - > /etc/hosts
+  rm "$TMPFILE"
 done
 
 # configurações para UFW específicas
 
 for MLUFW in /etc/maratona-firewall/ufwrules/*; do
   [[ ! -e "$MLUFW" ]] && continue
-  . $MLUFW
+  . "$MLUFW"
 done
 
 # Rejeitando os pacotes udp e tcp para qualquer ip
