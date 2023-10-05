@@ -34,7 +34,7 @@ for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hos
   TMPFILE=$(mktemp)
   grep --extended-regexp --invert-match \
     "(${IP}|${HOSTNAME})" /etc/hosts > "$TMPFILE"
-  printf "$IP\t$HOSTNAME\n" | cat "$TMPFILE" - > /etc/hosts
+  printf '%s\t%s\n' "$IP" "$HOSTNAME" | cat "$TMPFILE" - > /etc/hosts
   rm "$TMPFILE"
 done
 
