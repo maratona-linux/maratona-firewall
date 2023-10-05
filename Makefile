@@ -1,4 +1,4 @@
-prefix=/usr
+prefix := /usr
 
 ntp_st1_servers := a.st1.ntp.br b.st1.ntp.br c.st1.ntp.br d.st1.ntp.br
 ntp_common_servers := a.ntp.br b.ntp.br c.ntp.br
