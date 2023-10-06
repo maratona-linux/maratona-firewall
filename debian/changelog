@@ -1,3 +1,21 @@
+maratona-firewall (20230905) jammy; urgency=medium
+
+  * Add ntp.br hosts
+  * Upgrade package from 1.0 to 3.0 format
+  * Add missing postrm and preinst maintainer scripts
+  * Comply with standard debhelper maintainer scripts
+  * Add debhelper misc:Depends
+  * Do not require root or fakeroot support
+  * Add ntp.br servers to the configuration
+  * Avoid recursive expansion of the prefix variable
+  * Remove duplicated prefix in naquadah Make rule
+  * Limit installed hosts permission
+  * Double quote variables in firewall-configuration
+  * Replace egrep with standard grep with long options
+  * Trust printf to expand the variables by itself
+
+ -- Davi Antônio da Silva Santos <antoniossdavi@gmail.com>  Thu, 05 Oct 2023 21:59:38 -0300
+
 maratona-firewall (20230113) jammy; urgency=medium
 
   * Update debian/copyright's years

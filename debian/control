@@ -3,12 +3,14 @@ Section: misc
 Priority: optional
 Maintainer: Bruno César Ribas <bruno.ribas@unb.br>
 Build-Depends: debhelper-compat (= 13)
+Rules-Requires-Root: no
+Standards-Version: 4.6.0.1
 Vcs-Git: https://github.com/maratona-linux/maratona-firewall.git
 Vcs-Browser: https://github.com/maratona-linux/maratona-firewall
 
 Package: maratona-firewall
 Architecture: all
-Depends: ufw, debconf
+Depends: ufw, debconf, ${misc:Depends}
 Description: Pacote que isola o competidor da rede
  Este pacote evita que pacotes de rede entrem e saiam do maratona-linux,
  exceto pelo acesso ao servidor BOCA.
