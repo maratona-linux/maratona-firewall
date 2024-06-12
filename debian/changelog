@@ -1,3 +1,9 @@
+maratona-firewall (20240530) noble; urgency=medium
+
+  * Update copyright file
+
+ -- Davi Antônio da Silva Santos <antoniossdavi@gmail.com>  Thu, 30 May 2024 20:18:35 -0300
+
 maratona-firewall (20231006) jammy; urgency=medium
 
   * Bump version
