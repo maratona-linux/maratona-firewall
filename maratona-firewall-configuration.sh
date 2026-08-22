@@ -32,8 +32,17 @@ for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hos
   # Only the first IP in the file will have an entry in /etc/hosts
   IP="$(head -n1 $LATAMHOST)"
   TMPFILE=$(mktemp)
-  egrep -v "($IP|$HOSTNAME)" /etc/hosts > $TMPFILE
-  printf "$IP\t$HOSTNAME\n" | cat $TMPFILE - > /etc/hosts
+  # Compare whole fields, never substrings: the hostname used to be dropped
+  # into an unanchored egrep ERE, so a file named "maratona" wiped every line
+  # containing that word - including allowlist entries written by previous
+  # loop iterations. Unescaped dots in $IP had the same problem.
+  awk -v ip="$IP" -v host="$HOSTNAME" '
+    /^[[:space:]]*#/ { print; next }
+    $1 == ip { next }
+    { for (i = 2; i <= NF; i++) if ($i == host) next }
+    { print }
+  ' /etc/hosts > $TMPFILE
+  printf '%s\t%s\n' "$IP" "$HOSTNAME" | cat $TMPFILE - > /etc/hosts
   rm $TMPFILE
 done
 
