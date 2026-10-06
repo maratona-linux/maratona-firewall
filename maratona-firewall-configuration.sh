@@ -29,11 +29,22 @@ for LATAMHOST in /usr/share/maratona-firewall/hosts/* /etc/maratona-firewall/hos
     ufw allow out proto tcp to "$IP"
   done
 
-  # Only the first IP in the file will have an entry in /etc/hosts
+  # Only the first IP in the file will have an entry in /etc/hosts.
+  # Compare whole fields, never substrings: a regex built from the name and
+  # the IP wiped every line containing them (the file named "maratona" took
+  # any allowlist entry with that word, and unescaped dots matched other
+  # addresses). Dropping by IP made two names behind the same proxy erase
+  # each other, so only this name's old line goes. The exception is
+  # 127.0.1.1, the machine's own name: there the old line (the hostname of
+  # the machine that built the image) goes by address too.
   IP="$(head -n1 "$LATAMHOST")"
   TMPFILE=$(mktemp)
-  grep --extended-regexp --invert-match \
-    "(${IP}|${HOSTNAME})" /etc/hosts > "$TMPFILE"
+  awk -v ip="$IP" -v host="$HOSTNAME" '
+    /^[[:space:]]*#/ { print; next }
+    $1 == ip && ip == "127.0.1.1" { next }
+    { for (i = 2; i <= NF; i++) if ($i == host) next }
+    { print }
+  ' /etc/hosts > "$TMPFILE"
   printf '%s\t%s\n' "$IP" "$HOSTNAME" | cat "$TMPFILE" - > /etc/hosts
   rm "$TMPFILE"
 done
